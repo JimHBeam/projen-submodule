@@ -19,7 +19,7 @@ A reusable submodule template for bootstrapping Python Poetry projects using [Pr
 
 3. **Run the setup script**
    ```sh
-   ./projen-cmdline-tool-submodule/projen-init.sh
+   ./projen-submodule/projen-init.sh
    ```
 
 4. **Create your project config**

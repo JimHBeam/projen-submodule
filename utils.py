@@ -12,6 +12,6 @@ def create_readonly_file(project, file_path, template_path="", readonly=True):
     if template_path == "":
         template_path = file_path
 
-    file = open(f"projen-cmdline-tool-submodule/templates/{template_path}", "r")
+    file = open(f"projen-submodule/templates/{template_path}", "r")
     lines = file.read().splitlines()
     TextFile(scope=project, lines=lines, readonly=readonly, file_path=file_path)

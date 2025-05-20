@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # Ensure we're not inside the submodule dir before linking
-if [ "${PWD##*/}" = "projen-cmdline-tool-submodule" ]; then
+if [ "${PWD##*/}" = "projen-submodule" ]; then
   cd ..
 fi
 
 # Link to shared .projenrc.py and copy .projen folder
-ln -s ./projen-cmdline-tool-submodule/.projenrc.py .projenrc.py
-cp -r ./projen-cmdline-tool-submodule/.projen .
+ln -s ./projen-submodule/.projenrc.py .projenrc.py
+cp -r ./projen-submodule/.projen .
 
 # Show current directory for logging/debugging
 pwd

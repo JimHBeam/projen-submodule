@@ -56,16 +56,8 @@ create_readonly_file(project, ".darglint")
 create_readonly_file(project, "liccheck.ini")
 create_readonly_file(project, "mypy.ini")
 
-create_readonly_file(
-    project=project,
-    file_path=f"{options['name']}/cli/common.py",
-    template_path="cli/common.py",
-    readonly=False
-)
-
 TextFile(project, lines=coverage(options).splitlines(), file_path=".coveragerc")
 TextFile(project, lines=flake8(options).splitlines(), file_path=".flake8")
-TextFile(project, lines=dependabot(options).splitlines(), file_path=".github/dependabot.yml")
 TextFile(project, lines=Makefile(options).splitlines(), file_path="Makefile")
 
 for entry in sorted(set(options.get("gitignore", []))):
