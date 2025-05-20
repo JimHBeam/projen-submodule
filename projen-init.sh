@@ -33,7 +33,7 @@ cat <<EOF >.projenrc.projdata.json
       "priority": "default"
     }
   ],
-  "main_branch": "master"
+  "main_branch": "main"
 }
 EOF
 
