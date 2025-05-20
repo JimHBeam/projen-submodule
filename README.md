@@ -1,6 +1,6 @@
 # 🛠️ Projen Submodule
 
-A reusable submodule template for bootstrapping Python projects tools using [Projen](https://github.com/projen/projen)
+A reusable submodule template for bootstrapping Python Poetry projects using [Projen](https://github.com/projen/projen)
 
 ---
 
@@ -14,7 +14,7 @@ A reusable submodule template for bootstrapping Python projects tools using [Pro
 
 2. **Add this repo as a Git submodule**
    ```sh
-   git submodule add --name projen-submodule -b master ../projen-submodule projen-submodule
+   git submodule add --name projen-submodule -b main ../projen-submodule projen-submodule
    ```
 
 3. **Run the setup script**
