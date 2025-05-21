@@ -5,8 +5,9 @@ A reusable submodule template for bootstrapping Python Poetry projects using [Pr
 ---
 
 ## 🚀 Quick Start
+Assuming poetry is installed already.
 
-1**Install Projen globally**
+1. **Install Projen globally**
     ```sh
     npm install -g projen
     ```
@@ -26,10 +27,11 @@ A reusable submodule template for bootstrapping Python Poetry projects using [Pr
    ```sh
    ./projen-submodule/projen-init.sh
    ```
+   this will add projen as a deve dep and setup ".projenrc.projdata.json" file in the root
 
 5. **Create your project config**
 
-   Create a `.projenrc.projdata.json` file in the root directory:
+   Edit your `.projenrc.projdata.json` file in the root directory:
    ```json
    {
      "name": "pencil_pusher",
@@ -89,10 +91,8 @@ my-project/
 
 ## ✨ Features
 
-- 📦 Modular config with `.projenrc.py` and JSON input
 - 🧰 Built-in dev tools: `black`, `flake8`, `mypy`, `bandit`
 - ✅ GitHub Actions CI for testing and releases
-- 🤖 Dependabot Pip automation
 - 🛠️ Handy Make targets:
   - `make install`
   - `make test`
