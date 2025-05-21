@@ -71,6 +71,7 @@ cat <<EOF >.projenrc.projdata.json
   "exclude": [],
   "gitignore": [],
   "scripts": {},
+  "coverage": 50,
   "source": [
     {
       "name": "pypi_",
