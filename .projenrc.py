@@ -27,9 +27,9 @@ project = GenericPythonProject(
     setuptools=False,
     poetry=True,
     github=False,
-    deps=["python@^3.11"] + options.get("deps", []),
+    deps=["python@^3.12"] + options.get("deps", []),
     dev_deps=[
-        "black@*", "flake8@*", "isort@*", "liccheck@*", "mypy@*", "pytest-cov@*"
+        "black@*", "flake8@*", "isort@*", "liccheck@*", "mypy@*", "pytest-cov@*", "projen@*"
     ] + options.get("dev_deps", []),
     poetry_options=PoetryPyprojectOptionsWithoutDeps(
         extras=options.get("extras", {}),
