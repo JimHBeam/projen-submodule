@@ -65,7 +65,7 @@ cat <<EOF >.projenrc.projdata.json
   "email": "$(git config user.email)",
   "version": "0.0.1",
   "deps": [],
-  "dev_deps": [projen@*],
+  "dev_deps": ["projen@*"],
   "extras": {},
   "include": [],
   "exclude": [],
