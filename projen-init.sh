@@ -14,24 +14,43 @@ pwd
 
 # --- Ensure pyproject.toml exists ---
 if [ ! -f "pyproject.toml" ]; then
-  echo "Initializing pyproject.toml with poetry..."
-  poetry init -n
-fi
+  echo "Initializing pyproject.toml with Poetry-style metadata..."
+  cat <<EOF > pyproject.toml
+[project]
+name = "$(basename "$PWD")"
+version = "0.1.0"
+description = ""
+authors = [
+  {name = "$(git config user.name)", email = "$(git config user.email)"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = []
 
-# --- Set python version constraint to >=3.12,<4.0 ---
-if grep -q '^\s*python\s*=' pyproject.toml; then
-  echo "Updating existing Python version constraint..."
-  sed -i.bak 's/^.*python *=.*/python = ">=3.12,<4.0"/' pyproject.toml
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+EOF
 else
-  echo "Inserting Python version constraint..."
-  awk '
-    /^\[tool.poetry.dependencies\]/ {
-      print
-      print "python = \">=3.12,<4.0\""
-      next
-    }
-    { print }
-  ' pyproject.toml > pyproject.tmp && mv pyproject.tmp pyproject.toml
+  # --- Patch requires-python in existing pyproject.toml ---
+  if grep -q '^\s*requires-python\s*=' pyproject.toml; then
+    echo "Updating existing requires-python..."
+    sed -i.bak 's/^\s*requires-python\s*=.*/requires-python = ">=3.12,<4.0"/' pyproject.toml
+  else
+    echo "Adding requires-python to [project] section..."
+    awk '
+      /^\[project\]/ {
+        print
+        found=1
+        next
+      }
+      found && NF==0 {
+        print "requires-python = \">=3.12,<4.0\""
+        found=0
+      }
+      { print }
+    ' pyproject.toml > pyproject.tmp && mv pyproject.tmp pyproject.toml
+  fi
 fi
 
 # --- Add projen as a dev dependency ---
@@ -54,14 +73,3 @@ cat <<EOF >.projenrc.projdata.json
   "scripts": {},
   "source": [
     {
-      "name": "pypi_",
-      "url": "https://pypi.org/simple/",
-      "priority": "default"
-    }
-  ],
-  "main_branch": "main"
-}
-EOF
-
-# --- Run projen synthesis ---
-python .projenrc.py
