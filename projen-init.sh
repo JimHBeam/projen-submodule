@@ -6,11 +6,21 @@ if [ "${PWD##*/}" = "projen-submodule" ]; then
 fi
 
 # Link to shared .projenrc.py and copy .projen folder
-ln -s ./projen-submodule/.projenrc.py .projenrc.py
+ln -sf ./projen-submodule/.projenrc.py .projenrc.py
 cp -r ./projen-submodule/.projen .
 
 # Show current directory for logging/debugging
 pwd
+
+# Check if pyproject.toml exists, if not, initialize with poetry
+if [ ! -f "pyproject.toml" ]; then
+  echo "Initializing pyproject.toml with poetry..."
+  poetry init -n
+fi
+
+# Add projen as a dependency
+echo "Adding projen to the project with poetry..."
+poetry add projen
 
 # Generate .projenrc.projdata.json with generic project config
 cat <<EOF >.projenrc.projdata.json

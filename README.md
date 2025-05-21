@@ -6,23 +6,28 @@ A reusable submodule template for bootstrapping Python Poetry projects using [Pr
 
 ## 🚀 Quick Start
 
-1. **Create and initialize your project**
+1**Install Projen globally**
+    ```sh
+    npm install -g projen
+    ```
+
+2. **Create and initialize your project**
    ```sh
    mkdir my-project && cd my-project
    git init
    ```
 
-2. **Add this repo as a Git submodule**
+3. **Add this repo as a Git submodule**
    ```sh
    git submodule add --name projen-submodule -b main ../projen-submodule projen-submodule
    ```
 
-3. **Run the setup script**
+4. **Run the setup script**
    ```sh
    ./projen-submodule/projen-init.sh
    ```
 
-4. **Create your project config**
+5. **Create your project config**
 
    Create a `.projenrc.projdata.json` file in the root directory:
    ```json
@@ -46,12 +51,12 @@ A reusable submodule template for bootstrapping Python Poetry projects using [Pr
    "torch@{ url = \"https://download.pytorch.org/\" }"
    ```
 
-5. **Install Projen and run it**
+6. **Run it**
    ```sh
    poetry install
    poetry run python3 .projenrc.py
    ```
-
+    
 ---
 
 ## 📁 Folder Structure
