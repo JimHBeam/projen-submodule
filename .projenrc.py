@@ -47,7 +47,7 @@ project.add_git_ignore(".idea*")
 
 # GitHub Actions & template setup
 create_readonly_file(project, ".github/ISSUE_TEMPLATE/new-issue-template.md", "github/ISSUE_TEMPLATE/new-issue-template.md")
-create_readonly_file(project, ".github/workflows/on-push.yml", "github/workflows/on-push.yml")
+create_readonly_file(project, ".github/workflows/on-push.yml", "github/workflows/generic/on-push.yml")
 
 main_branch = options.get("main_branch", "main")
 TextFile(project, lines=on_publish_main(options).splitlines(), file_path=f".github/workflows/generic/on-publish-{main_branch}.yml")

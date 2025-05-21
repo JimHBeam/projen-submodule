@@ -73,3 +73,14 @@ cat <<EOF >.projenrc.projdata.json
   "scripts": {},
   "source": [
     {
+      "name": "pypi_",
+      "url": "https://pypi.org/simple/",
+      "priority": "primary"
+    }
+  ],
+  "main_branch": "main"
+}
+EOF
+
+# --- Run projen synthesis ---
+poetry run python .projenrc.py
