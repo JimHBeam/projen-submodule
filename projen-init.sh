@@ -12,15 +12,29 @@ cp -r ./projen-submodule/.projen .
 # Show current directory for logging/debugging
 pwd
 
-# Check if pyproject.toml exists, if not, initialize with poetry
+# Check if pyproject.toml exists
 if [ ! -f "pyproject.toml" ]; then
   echo "Initializing pyproject.toml with poetry..."
   poetry init -n
 fi
 
-# Add projen as a dependency
-echo "Adding projen to the project with poetry..."
-poetry add projen
+# Ensure Python version constraint is set
+if grep -q '^\s*python\s*=' pyproject.toml; then
+  echo "Updating existing Python version constraint..."
+  # Replace the existing line
+  sed -i.bak 's/^.*python *=.*/python = ">=3.12,<4.0"/' pyproject.toml
+else
+  echo "Inserting Python version constraint..."
+  # Insert under [tool.poetry.dependencies]
+  awk '
+    /^\[tool.poetry.dependencies\]/ {
+      print
+      print "python = \">=3.12,<4.0\""
+      next
+    }
+    { print }
+  ' pyproject.toml > pyproject.tmp && mv pyproject.tmp pyproject.toml
+fi
 
 # Generate .projenrc.projdata.json with generic project config
 cat <<EOF >.projenrc.projdata.json
