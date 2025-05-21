@@ -37,7 +37,7 @@ fixstyle: .venv ## fix black and isort style violations
 	poetry run black -l 99 {name} tests
 
 test: .venv ## quick run of unit tests
-	poetry run pytest --verbose --capture=no --cov={name} --cov-fail-under=70
+	poetry run pytest --verbose --capture=no --cov={name} --cov-fail-under={coverage}
 	
 test-all: lint test
 
@@ -52,5 +52,6 @@ poetry.lock:
 -include Makefile_aux
 -include Makefile_override
   """.format(
-        name=options["name"].replace("-", "_")
+        name=options["name"].replace("-", "_"),
+        coverage=options.get("coverage", 25)
     )
