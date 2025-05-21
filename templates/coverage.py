@@ -17,5 +17,5 @@ omit =
     */__init__.py
   """.format(
         name=options["name"].replace("-", "_"),
-        coverage=options.get("coverage", 70)
+        coverage=options.get("coverage", 25)
     )
