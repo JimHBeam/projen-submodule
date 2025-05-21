@@ -3,6 +3,8 @@ Used projen and poetry in a submodule in a few roles and oiufn dit really useful
 
 A reusable submodule template for bootstrapping Python Poetry projects using [Projen](https://github.com/projen/projen)
 
+Results in a repo that looks like this https://github.com/JimHBeam/testrepo
+
 ---
 
 ## 🚀 Quick Start
@@ -59,8 +61,7 @@ Assuming poetry is installed already.
    poetry install
    poetry run python3 .projenrc.py
    ```
-    
----
+
 
 ## 📁 Folder Structure
 
