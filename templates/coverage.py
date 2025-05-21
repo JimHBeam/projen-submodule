@@ -9,12 +9,13 @@ source =
 [run]
 branch = true
 [report]
-fail_under = 70
+fail_under = {coverage}
 show_missing = true
 omit = 
     tests/
     {name}/cli/cli.py
     */__init__.py
   """.format(
-        name=options["name"].replace("-", "_")
+        name=options["name"].replace("-", "_"),
+        coverage=options.get("coverage", 70)
     )
