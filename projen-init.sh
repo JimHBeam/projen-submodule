@@ -12,20 +12,18 @@ cp -r ./projen-submodule/.projen .
 # Show current directory for logging/debugging
 pwd
 
-# Check if pyproject.toml exists
+# --- Ensure pyproject.toml exists ---
 if [ ! -f "pyproject.toml" ]; then
   echo "Initializing pyproject.toml with poetry..."
   poetry init -n
 fi
 
-# Ensure Python version constraint is set
+# --- Set python version constraint to >=3.12,<4.0 ---
 if grep -q '^\s*python\s*=' pyproject.toml; then
   echo "Updating existing Python version constraint..."
-  # Replace the existing line
   sed -i.bak 's/^.*python *=.*/python = ">=3.12,<4.0"/' pyproject.toml
 else
   echo "Inserting Python version constraint..."
-  # Insert under [tool.poetry.dependencies]
   awk '
     /^\[tool.poetry.dependencies\]/ {
       print
@@ -36,7 +34,11 @@ else
   ' pyproject.toml > pyproject.tmp && mv pyproject.tmp pyproject.toml
 fi
 
-# Generate .projenrc.projdata.json with generic project config
+# --- Add projen as a dev dependency ---
+echo "Adding projen via poetry..."
+poetry add --dev projen
+
+# --- Create .projenrc.projdata.json ---
 cat <<EOF >.projenrc.projdata.json
 {
   "name": "$(echo ${PWD##*/} | sed 's/-/_/g')",
@@ -61,5 +63,5 @@ cat <<EOF >.projenrc.projdata.json
 }
 EOF
 
-# Run projen synthesis
+# --- Run projen synthesis ---
 python .projenrc.py
