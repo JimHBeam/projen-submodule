@@ -2,7 +2,6 @@ import os
 import stat
 from projen.python import PythonProject, PoetryPyprojectOptionsWithoutDeps
 from projen import TextFile
-from templates.sonar import sonar
 
 
 class GenericPythonProject(PythonProject):
