@@ -1,5 +1,5 @@
 # 🛠️ Projen Submodule
-Used projen and poetry in a submodule in a few roles and oiufn dit really usefull for standardising repo setup so Ive set one up to use myself.
+Used projen and poetry in a submodule in a few roles and found it really usefull for standardising repo setup so Ive set one up to use myself.
 
 A reusable submodule template for bootstrapping Python Poetry projects using [Projen](https://github.com/projen/projen)
 
