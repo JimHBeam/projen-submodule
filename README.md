@@ -53,7 +53,7 @@ Assuming poetry is installed already.
 
    Complex dependencies must be JSON-escaped:
    ```json
-   "torch@{ url = \"https://download.pytorch.org/\" }"
+   "apache-airflow@{ extras = [\"celery\", \"postgres\", \"redis\", \"rabbitmq\"], version = \"*\" }"
    ```
 
 6. **Run it**
